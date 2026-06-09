@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddarth Kashyap | Cloud Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 20%; background-color: #f4f4f9; color: #333; }
+        .counter-box { margin-top: 20px; padding: 15px; background: #e2e8f0; display: inline-block; border-radius: 8px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Siddarth Kashyap - Multicloud DevOps Engineer</h1>
+    <p>Infrastructure provisioned successfully via Terraform and served securely via AWS CloudFront.</p>
+    
+    <div class="counter-box">
+        Visitor Count: <span id="visitor-count">Loading API...</span>
+    </div>
+<script>
+        async function updateCounter() {
+            try {
+                // IMPORTANT: Keep the /count at the end of the URL
+                const response = await fetch('https://vakxxz7hgg.execute-api.ap-south-1.amazonaws.com/count', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+                document.getElementById('visitor-count').innerText = data.visit_count;
+            } catch (error) {
+                console.error("Error fetching count:", error);
+                document.getElementById('visitor-count').innerText = 'Offline';
+            }
+        }
+        
+        // Trigger the function when the page loads
+        updateCounter();
+    </script>
+</body>
+</html>
